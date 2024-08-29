@@ -48,8 +48,7 @@ pipeline {
         always {
                 mail to: "swapnilmodi99.sm@gmail.com",
                     subject: "Jenkins Build - ${currentBuild.fullDisplayName}",
-                    body: "Build ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results.",
-                    attachLog: true
+                    body: "Build ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results."
         }
     }
 }
