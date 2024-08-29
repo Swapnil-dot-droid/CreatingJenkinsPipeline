@@ -47,8 +47,8 @@ pipeline {
     post {
         always {
             script{
-                def resultDescription = currentBuild.description ?: "Build completed"
-                writeFile file: 'build.log', text: resultDescription
+                def buildLog = manager.build.logFile.text
+                writeFile file: 'build.log', text: buildLog
     
                 mail to: "swapnilmodi99.sm@gmail.com",
                     subject: "Jenkins Build - ${currentBuild.fullDisplayName}",
