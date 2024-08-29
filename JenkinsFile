@@ -46,12 +46,15 @@ pipeline {
 
     post {
         always {
-            emailext (
-                to: "swapnilmodi99.sm@gmail.com",
-                subject: "Jenkins Build - ${currentBuild.fullDisplayName}",
-                body: "Build ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results.",
-                attachLog: true
-            )
+            script{
+                def logContent = currentBuild.rawBuild.getLog(1000).join("\n")
+                writeFile file: 'build.log', text: logContent
+    
+                mail to: "swapnilmodi99.sm@gmail.com",
+                    subject: "Jenkins Build - ${currentBuild.fullDisplayName}",
+                    body: "Build ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results."
+                    attachmentsPattern: 'build.log'
         }
     }
+}
 }
