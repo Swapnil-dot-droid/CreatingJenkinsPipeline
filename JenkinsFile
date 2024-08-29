@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             script{
-                def logContent = currentBuild.rawBuild.getLog(1000).join("\n")
+                def logContent = currentBuild.getLog(1000).join("\n")
                 writeFile file: 'build.log', text: logContent
     
                 mail to: "swapnilmodi99.sm@gmail.com",
