@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -31,7 +32,6 @@ pipeline {
                 echo 'Performing code analysis with SonarQube'
             }
         }
-
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan with OWASP tool'
@@ -50,7 +50,6 @@ pipeline {
             }
         }
 
-
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging server (AWS)'
@@ -68,6 +67,7 @@ pipeline {
                 echo 'Deploying to production server (AWS)'
             }
         }
+    }
 
     post {
         always {
@@ -77,5 +77,3 @@ pipeline {
         }
     }
 }
-}
-
