@@ -12,6 +12,17 @@ pipeline {
             steps {
                 echo 'Running unit and integration tests'
             }
+            post {
+                success {
+                    mail to: "swapnilmodi99.sm@gmail.com",
+                    subject: "Unit and Integration Tests Stage Result",
+                    body: "The Unit and Integration Tests stage is completed successfully"
+                }
+                failure {
+                    mail to: "swapnilmodi99.sm@gmail.com",
+                    subject: "Unit and Integration Tests Stage Result",
+                    body: "The Unit and Integration Tests stage failed."
+                }
         }
 
         stage('Code Analysis') {
@@ -23,6 +34,17 @@ pipeline {
             steps {
                 echo 'Performing security scan with OWASP tool'
             }
+            post {
+                success {
+                    mail to: "swapnilmodi99.sm@gmail.com",
+                    subject: "Security Scan Stage Result",
+                    body: "The Security Scan stage is completed successfully"
+                }
+                failure {
+                    mail to: "swapnilmodi99.sm@gmail.com",
+                    subject: "Security Scan Stage Result",
+                    body: "The Security Scan stage failed."
+                }
         }
 
         stage('Deploy to Staging') {
